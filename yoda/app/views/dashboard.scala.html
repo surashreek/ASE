@@ -1,0 +1,68 @@
+@(username: String)(fullname: String)
+<!-- Takes user information as parameters, so that they can be greeted upon loggin in! -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/foundation.min.css")">
+    <script type='text/javascript' src='@routes.Assets.versioned("javascripts/foundation.min.js")'></script>
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    @*<script src="@controllers.routes.Application.jsRoutes()" type="text/javascript"></script>*@
+    <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+    </head>
+<body>
+    <nav class="top-bar" data-topbar role="navigation" style="background: black; padding-left: 15px">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+          <a href="#"><center>
+            <img src="@routes.Assets.versioned("images/yoda.png")" width="80px"; style="float: left">
+          </a></center>
+          </h1>
+        </li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li style="width:200px">
+            <center><a href="#" style="font-family: initial; color: white">Hello @username!</a></center>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <div class="icon-bar large-vertical four-up" style="padding-top: 10px; background: black">
+      <a class="item" style="font-family: initial">
+        <img src="@routes.Assets.versioned("images/profile.jpg")" >
+        <label>My Profile</label>
+      </a>
+      <a class="item active" style="font-family: initial">
+        <img src="@routes.Assets.versioned("images/mysessions.png")" >
+        <label>My Sessions</label>
+      </a>
+      <a class="item" style="font-family: initial">
+        <img src="@routes.Assets.versioned("images/request.jpg")" >
+        <label>Request Session</label>
+      </a>
+      <a class="item" style="font-family: initial">
+        <img src="@routes.Assets.versioned("images/beatutor.jpg")" >
+        <label>Be a tutor</label>
+      </a>
+      <a class="item" style="font-family: initial">
+        <img src="@routes.Assets.versioned("images/logout.png")" >
+        <label>Log out</label>
+      </a>
+      <a class="item" style="font-family: initial">
+      <form action="" method="post">
+        <img src="@routes.Assets.versioned("images/about.jpg")" >
+        <button>About Yoda</button>
+        </form>
+      </a>
+    </div>
+  </body>
+</html>
+

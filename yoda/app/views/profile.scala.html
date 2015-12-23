@@ -1,0 +1,27 @@
+@(user : models.User)
+
+@home(session().get("connected")){
+
+    <div id="container" style="width: 88%; height: 100%; float: right">
+        <div style="padding-left: 150px; padding-right: 150px; padding-top: 5px; padding-bottom: 50px; height: 100%">
+            <div class="panel callout radius" style="height: 100%; float: left">
+                <div id="profile-picture" style="width: 150px; float: left; padding-right: 5px">
+                    <img src="@routes.Assets.versioned("images/smiley.jpg")" >
+                </div>
+                <div id="profile-info" style="width: 500px; height: 550px; float: right; margin-left: 10px; background: white;">
+                    <div class="panel" style="">
+                      <h5><b>@user.first_name @user.last_name</b></h5>
+                      <br>
+                      <i><u>Profile info</u></i><br>
+                      Username: @user.user_name<br>
+                      <br>
+                      Description: @user.description
+                      <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

@@ -1,0 +1,83 @@
+@(username: String)(content: Html)
+<!-- Takes user information as parameters, so that they can be greeted upon loggin in! -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/foundation.min.css")">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type='text/javascript' src='@routes.Assets.versioned("javascripts/foundation.min.js")'></script>
+    <script type='text/javascript' src='@routes.Assets.versioned("javascripts/jquery.raty.js")'></script>
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    @*<script src="@controllers.routes.Application.jsRoutes()" type="text/javascript"></script>*@
+    <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("javascripts/beatutor.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("javascripts/mysessions.js")" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="topbar" style="width: 100%; float: top">
+      <nav class="top-bar" data-topbar role="navigation" style="background: black; padding-left: 15px">
+        <ul class="title-area">
+          <li class="name">
+            <h1>
+              <a href="#"><center>
+                <img src="@routes.Assets.versioned("images/yoda.png")" width="80px"; style="float: left">
+              </a></center>
+            </h1>
+          </li>
+        </ul>
+        <section class="top-bar-section">
+            <!-- Right Nav Section -->
+          <ul class="right">
+            <li style="width:200px">
+              <center><a href="#" style="font-family: initial; color: white">@username</a></center>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+    @content
+    <div id="content" style="width: 12%; height: 100%; float: left; background: black">
+      <div class="icon-bar large-vertical four-up" style="background: black; padding-left: 5px;">
+        <a href="/profile" class="item" style="font-family: initial">
+          <img src="@routes.Assets.versioned("images/profile.jpg")" >
+          <label>My Profile</label>
+        </a>
+        <a href="/mysessions" class="item" style="font-family: initial">
+          <img src="@routes.Assets.versioned("images/mysessions.png")" >
+          <label>My Sessions</label>
+        </a>
+        <a href="/requestsession" class="item" style="font-family: initial">
+          <img src="@routes.Assets.versioned("images/request.jpg")" >
+          <label>Request Session</label>
+        </a>
+        <a href="/beatutor" class="item" style="font-family: initial">
+          <img src="@routes.Assets.versioned("images/beatutor.jpg")" >
+          <label>Be a tutor</label>
+        </a>
+        <a href="/signout" class="item" style="font-family: initial">
+          <img src="@routes.Assets.versioned("images/logout.png")" >
+          <label>Log out</label>
+        </a>
+        <a href="/about" class="item" style="font-family: initial">
+          <img src="@routes.Assets.versioned("images/about.jpg")" >
+          <label>About Yoda</label>
+        </a>
+      </div>
+    </div>
+      <!--<div class="contain-to-grid sticky" style="margin-top: 11%">
+    <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+      <center>
+        <p style="color: white; font-family: initial; margin-top: 0.5rem">
+          Developed by: Cool Kids Anonymous for COMS W4156 Advanced Software Engineering (Prof. Gail Kaiser)
+        </p>
+      </center>
+    </nav>
+  </div>-->
+  </body>
+</html>
+

@@ -1,0 +1,14 @@
+@(message: String)
+
+
+@main("GO AWAY!") {
+
+<div style="margin-left: 32%;">
+    <form action="@routes.Application.index()" method="GET" style="padding-top: 170px; padding-left: 20px">
+        <fieldset style="width:400px">
+            <p style="text-align:center">@message<br /><br />
+                <button class="button tiny" style="background: black">Back to Home</button></p>
+        </fieldset>
+    </form>
+</div>
+}

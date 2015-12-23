@@ -1,0 +1,66 @@
+@(courselist : List[Course])
+
+@home(session().get("connected")){
+
+    <div id="container" style="width: 88%; height: 100%; float: right">
+        <div style="padding-left: 300px; padding-right: 150px; padding-top: 5px; padding-bottom: 50px; height: 100%">
+            <div class="panel callout radius" style="height: 100%; float: left; overflow: auto">
+                <div id="profile-info" style="width: 500px; height: 550px; float: right; margin-left: 5px; background: white;">
+                    <div class="panel" style="">
+                      <h5><b><center>Be a tutor!</center></b></h5>
+                      <br>
+                      <form id="tutorform">
+                        <div class="row">
+                          <div class="large-12 columns">
+                            <label>Say something about yourself!
+                              <textarea id="description" name="description" style="height: 70px" placeholder="Ex. Your major @@CU, interests, past experience, etc."></textarea>
+                            </label>
+                          </div>
+                        </div>
+
+                          <label>What courses would you like to tutor? (Choose at least one)
+                          </label>
+                        <div class="row">
+                          <div class="large-12 columns">
+                              <select id="course0" name="course0" class="courselist">
+                                <option value="" selected="true" disabled>Select a course</option>
+                                @for(c <- courselist) {
+                                    <option value=@c.course_id>@c.name - @c.description</option>
+                                }
+                              </select>
+                          </div>
+
+                        </div>
+                        <a id="addmore" style="float: right; padding-right: 10px">+ Add </a>
+                        <br><br>
+                        <a id="addtutor" class="button tiny" style="margin-left: 180px; background: black">Confirm</a>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tutorConfirm" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h2 id="modalTitle">A teacher Yoda is.</h2>
+        <p class="lead">Congratulations!</p>
+        <p>You've signed up successfully as a tutor on Yoda. You will now be listed every time a student runs a search for tutors.</p>
+        <a id="closeTutorConfirm" class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <div id="tutorFailure1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h2 id="modalTitle">Hmm... something went wrong.</h2>
+        <p class="lead">Sorry!</p>
+        <p>Looks like you've already signed up as a tutor for this. Try again, maybe?</p>
+        <a id="closeTutorFailure1" class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <div id="tutorFailure2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h2 id="modalTitle">Hmm... something went wrong.</h2>
+        <p class="lead">Sorry!</p>
+        <p>You need to add at least one course to be a tutor. Try again, maybe?</p>
+        <a id="closeTutorFailure2" class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <div class="modal"><!-- Place at bottom of page --></div>
+}

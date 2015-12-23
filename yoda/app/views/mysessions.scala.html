@@ -1,0 +1,240 @@
+@(requestedSessions : List[Session])(upcomingSessions : List[Session])(completedSessions : List[Session])(tutoringRequests : List[Session])(userId : Integer)
+
+@home(session().get("connected")) {
+
+    <div id="container" style="width: 88%; height: 100 %; float: right">
+        <div id="filter-sessions" style="height: 10 % ; float : left">
+            <ul class="tabs" data-tab>
+                <li id="panel1" class="tab-title" style="width: 281px; text-align : center">
+                    <a onclick="showHideSections(1,'requested-sessions')" style="font-family : initial">
+                        Requested Sessions</a>
+                </li>
+                <li id="panel2" class="tab-title active" style="width: 281px; text-align : center">
+                    <a onclick="showHideSections(2,'upcoming-sessions')" style="font-family : initial">
+                        Upcoming Sessions</a>
+                </li>
+                <li id="panel3" class="tab-title" style="width: 281px; text-align : center">
+                    <a onclick="showHideSections(3,'completed-sessions')" style="font-family : initial">
+                        Completed Sessions</a>
+                </li>
+                <li id="panel4" class="tab-title" style="width: 281px; text-align : center">
+                    <a onclick="showHideSections(4,'tutoring-requests')" style="font-family : initial">
+                        Tutoring Requests</a>
+                </li>
+            </ul>
+        </div>
+        <div id="upcoming-sessions" class="main-content" style="width : 100% ; padding-left : 10px ; float : left; height: 600px; overflow: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="800px"><center>Session details</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(s <- upcomingSessions) {
+                        <tr>
+                            <td>
+                                <div class="panel callout radius">
+                                    <!--<p>Tutor: <b>@s.tutor_name</b></p>
+                                    <p>Tutee: <b>@s.tutee_name</b></p>
+                                    <p>Course: <i>@s.course_name</i></p>
+                                    <p>Time: @s.scheduled_time.toString</p>
+                                    <p>Location : @s.location</p>-->
+                                    <img src="@routes.Assets.versioned("images/location.svg")" width="15px"; style="float: left;">
+                                    <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.location</div>
+                                    <br><br>
+                                    <img src="@routes.Assets.versioned("images/clock.png")" width="15px"; style="float: left;">
+                                    <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.scheduled_time.toString</div>
+                                    <br><br>
+                                    <img src="@routes.Assets.versioned("images/book.png")" width="15px"; style="float: left;">
+                                    <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.course_name</div>
+                                    <br><br>
+                                    <div style="float: left; font-size: 15px; font-family: initial">
+                                        Session will be held by @s.tutor_name (Tutor) with @s.tutee_name (Tutee)
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="tutoring-requests" class="main-content" style="width : 100% ; padding-left : 10px ; float : left; height: 600px; overflow: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="800px"><center>Session details</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                @for(s <- tutoringRequests) {
+
+                    @if(s.tutor_id == userId) {
+                        <tr>
+                            <td>
+                                <div class="panel callout radius">
+                                    <img src="@routes.Assets.versioned("images/location.svg")" width="15px"; style="float: left;">
+                                    <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.location</div>
+                                    <br><br>
+                                    <img src="@routes.Assets.versioned("images/clock.png")" width="15px"; style="float: left;">
+                                    <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.scheduled_time.toString</div>
+                                    <br><br>
+                                    <img src="@routes.Assets.versioned("images/book.png")" width="15px"; style="float: left;">
+                                    <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.course_name</div>
+                                    <br><br>
+                                    <div style="float: left; font-size: 15px; font-family: initial">
+                                        Session will be held by you, @s.tutor_name (Tutor), requested by @s.tutee_name (Tutee)
+                                    </div>
+                                    <br><br>
+                                    <div>
+                                        <div class="large-12 columns">
+                                            <label>Personal message (e.g. if declining, why?) <label id="TutorLabel"></label>
+                                                <textarea id="reply" name="reply" placeholder="Enter a personalized message..."></textarea>
+                                            </label>
+                                        </div>
+                                        <button class="button tiny" style="background : green ; margin-left : 50px" onclick="acceptClicked(@s.session_id)">
+                                            Accept</button>
+                                        <button class="button tiny" style="background : red ; margin-left : 50px" onclick="rejectClicked(@s.session_id)">
+                                            Decline</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="requested-sessions" class="main-content" style="width : 100% ; padding-left : 10px ; float : left; height: 600px; overflow: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="800px"><center>Session details</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                @for(s <- requestedSessions) {
+                    <tr>
+                        <td>
+                            <div class="panel callout radius">
+                                <img src="@routes.Assets.versioned("images/location.svg")" width="15px"; style="float: left;">
+                                <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.location</div>
+                                <br><br>
+                                <img src="@routes.Assets.versioned("images/clock.png")" width="15px"; style="float: left;">
+                                <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.scheduled_time.toString</div>
+                                <br><br>
+                                <img src="@routes.Assets.versioned("images/book.png")" width="15px"; style="float: left;">
+                                <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.course_name</div>
+                                <br><br>
+                                <div style="float: left; font-size: 15px; font-family: initial">
+                                    Requested session will be held by @s.tutor_name (Tutor) with @s.tutee_name (Tutee)
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="completed-sessions" class="main-content" style="width : 100% ; padding-left : 10px ; float : left; height: 600px; overflow: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="800px"><center>Session details</center></th>
+                        <th width="300px"><center>Rating</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                @for(s <- completedSessions) {
+                    <tr>
+                        <td>
+                            <div class="panel callout radius">
+                                <img src="@routes.Assets.versioned("images/location.svg")" width="15px"; style="float: left;">
+                                <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.location</div>
+                                <br><br>
+                                <img src="@routes.Assets.versioned("images/clock.png")" width="15px"; style="float: left;">
+                                <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.scheduled_time.toString</div>
+                                <br><br>
+                                <img src="@routes.Assets.versioned("images/book.png")" width="15px"; style="float: left;">
+                                <div style="float: left; font-size: 15px; font-family: initial">&nbsp; @s.course_name</div>
+                                <br><br>
+                                <div style="float: left; font-size: 15px; font-family: initial">
+                                    Session was held by @s.tutor_name (Tutor) with @s.tutee_name (Tutee)
+                                </div>
+                            </div>
+                        </td>
+                        @if(s.tutee_id == userId && s.rating == -1) {
+                            <td>
+                                <div class="large-12 columns">
+                                    <label>Did you like the session?
+                                        <select id="rating@s.session_id">
+                                        	<option value="0">Very Poor</option>
+                                            <option value="1">* Poor, would not recommend</option>
+                                            <option value="2">** Meh</option>
+                                            <option value="3">*** Good</option>
+                                            <option value="4">**** Great</option>
+                                            <option value="5">***** Superb, definitely recommend</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="large-12 columns">
+                                    <label>Comments
+                                        <textarea placeholder="Your experience, etc." id="comment@s.session_id"></textarea>
+                                    </label>
+                                </div>
+                                <button class="button tiny" style="margin-left:40%; background: black" onclick="submitRating(@s.session_id)">Submit</button>
+                            </td>
+                        } else { @if(s.tutor_id == userId && s.rating == -1) {
+                            <td>
+                                <p>Waiting for your tutee to rate this session.</p>
+                            </td>
+                            } else { @if(s.rating != -1) {
+                            <td>
+                                <p>This session was rated: @s.rating/5</p>
+                                <p>Comments: @s.user_comment</p>
+                            </td>
+                        }}}
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="requestAccept" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <h2 id="modalTitle">Request accepted</h2>
+            <p>Awesome. Your tutee should receive your confirmation soon.</p>
+            <a id="closeRequestAccept" class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+        <div id="requestReject" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <h2 id="modalTitle">Request rejected</h2>
+            <p>Maybe look into other session requests?</p>
+            <a id="closeRequestReject" class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+        <div id="ratingSuccess" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <h2 id="modalTitle">Thank you!</h2>
+            <p>Your session rating has been successfully saved!</p>
+            <a id="closeRatingSuccess" class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+        <div id="requestFail" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <h2 id="modalTitle">... That is why you fail :x</h2>
+            <p>Sorry! Request failed. Please try again!</p>
+            <a id="closeRequestFail" class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+        <div id="bandialog" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <h2 id="banTitle">You are forced to logout</h2>
+            <p>This account has been locked out due to suspicious behavior. If you feel this was done in error, please contact the administrator.</p>
+            <a id="closeban" class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+    </div>
+
+    <div class="modal"><!-- Place at bottom of page --></div>
+
+}

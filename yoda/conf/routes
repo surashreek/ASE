@@ -1,0 +1,56 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+
+GET     /home                       controllers.User.home()
+
+POST	/authenticate				controllers.Authentication.authenticate()
+
+GET     /signup                     controllers.Authentication.signup()
+
+POST     /signupUser                controllers.Authentication.signupUser()
+
+GET     /profile                    controllers.User.profile()
+
+GET     /beatutor                   controllers.User.beatutor()
+
+GET     /mysessions                 controllers.Sessions.mySessions()
+
+GET     /about                      controllers.Application.about()
+
+GET     /signout                    controllers.Authentication.signout()
+
+GET     /requestsession             controllers.RequestSession.index()
+
+POST    /addNewSession              controllers.RequestSession.AddNewSession()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# If someone attempts to GET a POST page; then we should return an exception (otherwise, we get a runtime error).
+
+GET     /addNewSession              controllers.Application.exception()
+GET     /authenticate               controllers.Application.exception()
+
+#Be a Tutor
+POST    /addTutor                   controllers.User.addTutor()
+
+# Testing e-mail send
+
+
+# Tutor Accepts are declines request
+POST    /confirmRejectSession       controllers.Sessions.confirmRejectSession()
+
+GET     /validate                   controllers.Authentication.validateSignup()
+
+# Add rating for a session
+POST    /addRating                  controllers.Sessions.addRating()
+
+# cron jobs
+GET     /invalidator                controllers.Authentication.runInvalidator()
+GET		/evaluateFlags		        controllers.Authentication.runEvaluation()
+GET     /reminder                   controllers.Sessions.sendReminders()
+

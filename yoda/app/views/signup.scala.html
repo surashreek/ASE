@@ -1,0 +1,41 @@
+@(message: String)
+
+@main("I find your lack of faith to be disturbing...") {
+
+<div style="margin-left: 32%;">
+	<form action="@routes.Authentication.signupUser()" method="post" style="padding-top: 170px; padding-left: 20px">
+        <fieldset style="width:400px">
+            <legend>Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.</legend>
+
+            <label>Username
+                <input type="text" placeholder="your Columbia e-mail address" name="user_name">
+            </label>
+            
+            <label>First Name
+                <input type="text" placeholder="your first name" name="first_name">
+            </label>
+
+            <label>Last Name
+                <input type="text" placeholder="your last name" name="last_name">
+            </label>
+            
+            <label>Password
+                <input type="password" placeholder="password" name="password">
+            </label>
+            
+            <label>Description
+                <textarea name="description" placeholder="About you"></textarea>
+            </label>
+                    <button class="button tiny" style="margin-left:40%; background: black">Sign up!</button>
+        </fieldset>
+    </form>
+    
+   <!--  <form action="@routes.Application.index()" method="GET" style="padding-top: 170px; padding-left: 20px">
+        <fieldset style="width:400px">
+            <p style="text-align:center">@message<br /><br />
+            <button class="button tiny" style="background: black">Back to Home</button></p>
+        </fieldset>
+    </form>  -->
+</div>
+
+}

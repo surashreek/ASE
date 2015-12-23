@@ -1,0 +1,28 @@
+@(message: String)
+
+@main("May the force be with you!") {
+<div style="margin-left: 32%;">
+    <form action="@routes.Authentication.authenticate()" method="post" style="padding-top: 170px; padding-left: 20px">
+        <fieldset style="width:400px">
+            <legend>Login or Sign up!</legend>
+
+            <label>Username
+                <input type="text" placeholder="your Columbia e-mail address" name="user_name">
+            </label>
+
+            <label>Password
+                <input type="password" placeholder="password" name="password">
+            </label>
+
+            <button class="button tiny" style="margin-left:40%; background: black">Login</button>
+        </fieldset>
+    </form>
+
+    <form action="@routes.Authentication.signup()" method="GET" style="padding-top: 20px; padding-left: 20px">
+        <fieldset style="width:400px">
+            <legend style="text-align:center">Sign up now! Yoda is open to all Columbia students.</legend>
+                <button class="button tiny" style="margin-left:40%; background: black">Sign up!</button>
+        </fieldset>
+    </form>
+</div>
+}
