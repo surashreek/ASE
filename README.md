@@ -1,4 +1,4 @@
-Advanced Software Engineering
+Fall 2015 COMS W4156, Advanced Software Engineering with Prof. Gail Kaiser
 
 Cools Kids Anonymous<br \>
 
